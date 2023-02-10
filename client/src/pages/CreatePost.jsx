@@ -21,10 +21,10 @@ const CreatePost = () => {
   const handleSurpriseMe = () => {}
 
   return (
-    <section className="max-w-7xl mx-auto">
-      <div className="font-bold text-not-that-black text-[32px]">
+    <section className="mx-auto max-w-7xl">
+      <div className="text-[32px] font-bold text-not-that-black">
         <h1>Create</h1>
-        <p className="mt-2 text-sky-blue text-[14px] max-w-[500px]">
+        <p className="mt-2 max-w-[500px] text-[14px] text-sky-blue">
           Create imaginative and visually stunning images through{" "}
           <span className="font-extrabold text-not-that-black">DALL-E AI</span>
         </p>
