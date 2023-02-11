@@ -37,10 +37,8 @@ const FormField = ({
         value={value}
         onChange={handleChange}
         required
-        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-not-that-black outline-none focus:border-black focus:ring-[#4649ff] "
+        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-not-that-black outline-none focus:border-black focus:ring-[#4649ff]"
       />
-
-      <div className="relative flex h-64 w-64 items-center justify-center rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-not-that-black focus:border-black focus:ring-blue-500"></div>
     </div>
   )
 }
