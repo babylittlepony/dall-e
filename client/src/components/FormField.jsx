@@ -25,7 +25,7 @@ const FormField = ({
             onClick={handleSurpriseMe}
             className="rounded-[5px] bg-[#ececf1] p-2 text-xs font-semibold text-not-that-black"
           >
-            Surprise me
+            Randomize
           </button>
         )}
       </div>
