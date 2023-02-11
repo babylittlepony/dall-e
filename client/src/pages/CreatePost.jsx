@@ -24,7 +24,28 @@ const CreatePost = () => {
     const randomPrompt = getRandomPrompt(form.prompt)
     setForm({ ...form, prompt: randomPrompt })
   }
-  const generateImage = () => {}
+  const generateImage = async () => {
+    if (form.prompt) {
+      try {
+        setGeneratingImg(true)
+        const res = await fetch("http://localhost:8080/api/v1/dalle", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: form.prompt }),
+        })
+        const data = await res.json()
+        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` })
+      } catch (error) {
+        alert(error)
+      } finally {
+        setGeneratingImg(false)
+      }
+    } else {
+      alert("Please enter an image")
+    }
+  }
 
   return (
     <section className="mx-auto max-w-7xl">
@@ -42,7 +63,7 @@ const CreatePost = () => {
             labelName="Your name"
             type="text"
             name="name"
-            placeholder="Fulan"
+            placeholder="Egar"
             value={form.name}
             handleChange={handleChange}
           />

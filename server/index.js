@@ -20,11 +20,10 @@ app.get("/", async (req, res) => {
 })
 
 const startServer = () => {
-  app.listen(8080, () =>
-    console.log("Server is running on: \nhttp://localhost:8080")
-  )
-
   try {
+    app.listen(8080, () =>
+      console.log("Server is running on: \nhttp://localhost:8080")
+    )
     connectDB(process.env.MONGODB_URL)
   } catch (error) {
     console.log(error)
