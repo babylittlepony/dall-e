@@ -17,8 +17,13 @@ const CreatePost = () => {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = () => {}
-  const handleChange = (e) => {}
-  const handleSurpriseMe = () => {}
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt)
+    setForm({ ...form, prompt: randomPrompt })
+  }
   const generateImage = () => {}
 
   return (
@@ -26,8 +31,8 @@ const CreatePost = () => {
       <div className="text-[32px] font-bold text-not-that-black">
         <h1>Create</h1>
         <p className="mt-2 max-w-[500px] text-[14px] tracking-wide text-sky-blue">
-          Create imaginative and visually stunning images through{" "}
-          <span className="font-extrabold text-not-that-black">DALL-E AI</span>
+          Create imaginative and visually stunning images through
+          <span className="font-extrabold text-not-that-black"> DALL-E AI</span>
         </p>
       </div>
 
