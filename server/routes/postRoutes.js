@@ -16,7 +16,7 @@ cloudinary.config({
 
 router.get("/", async (req, res) => {
   try {
-    const posts = Post.find({})
+    const posts = await Post.find({})
 
     res.status(200).json({ success: true, data: posts })
   } catch (error) {
@@ -36,6 +36,7 @@ router.post("/", async (req, res) => {
     })
 
     res.status(201).json({ success: true, data: newPost })
+    console.log("Post created", newPost)
   } catch (error) {
     res.status(500).json({ success: false, message: error })
   }

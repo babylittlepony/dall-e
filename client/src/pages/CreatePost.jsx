@@ -28,15 +28,19 @@ const CreatePost = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify({ ...form }),
         })
 
         await res.json()
+        alert("Success")
+        navigate("/")
       } catch (err) {
         alert(err)
       } finally {
         setLoading(false)
       }
+    } else {
+      alert("Please enter an image and generate it")
     }
   }
   const handleChange = (e) => {

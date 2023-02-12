@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Loader, Card, FormField } from "../components"
 
 const RenderCards = ({ data, title }) => {
+  console.log("data rendercard", data)
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />)
   }
@@ -17,7 +18,34 @@ const RenderCards = ({ data, title }) => {
 const Home = () => {
   const [loading, setLoading] = useState(false)
   const [allPosts, setAllPosts] = useState(null)
-  const [searcthText, setSearchText] = useState("aa")
+  const [searcthText, setSearchText] = useState("")
+
+  const fetchPosts = async () => {
+    setLoading(true)
+
+    try {
+      const res = await fetch("http://localhost:8080/api/v1/post", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (res.ok) {
+        const result = await res.json()
+        console.log("img res", result)
+        setAllPosts(result.data.reverse()) // Reverse to show newest post
+      }
+    } catch (error) {
+      alert(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
 
   return (
     <section className="mx-auto max-w-7xl">
@@ -52,7 +80,7 @@ const Home = () => {
               {searcthText ? (
                 <RenderCards data={[]} title="No search results found" />
               ) : (
-                <RenderCards data={[]} title="No posts found" />
+                <RenderCards data={allPosts} title="No posts found" />
               )}
             </div>
           </>
