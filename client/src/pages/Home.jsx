@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react"
 import { Loader, Card, FormField } from "../components"
 
 const RenderCards = ({ data, title }) => {
-  console.log("data rendercard", data)
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />)
   }
@@ -18,7 +17,9 @@ const RenderCards = ({ data, title }) => {
 const Home = () => {
   const [loading, setLoading] = useState(false)
   const [allPosts, setAllPosts] = useState(null)
-  const [searcthText, setSearchText] = useState("")
+  const [searchText, setSearchText] = useState("")
+  const [searchedResults, setSearchedResults] = useState(null)
+  const [searchTimeout, setSearchTimeout] = useState(null)
 
   const fetchPosts = async () => {
     setLoading(true)
@@ -33,7 +34,6 @@ const Home = () => {
 
       if (res.ok) {
         const result = await res.json()
-        console.log("img res", result)
         setAllPosts(result.data.reverse()) // Reverse to show newest post
       }
     } catch (error) {
@@ -47,6 +47,24 @@ const Home = () => {
     fetchPosts()
   }, [])
 
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout)
+
+    setSearchText(e.target.value)
+
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResults = allPosts.filter(
+          (item) =>
+            item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.prompt.toLowerCase().includes(searchText.toLowerCase())
+        )
+
+        setSearchedResults(searchResults)
+      }, 500)
+    )
+  }
+
   return (
     <section className="mx-auto max-w-7xl">
       <div className="text-[32px] font-bold text-not-that-black">
@@ -59,7 +77,13 @@ const Home = () => {
       </div>
 
       <div className="mt-16">
-        <FormField />
+        <FormField
+          labelName="Search images"
+          type="text"
+          name="text"
+          value={searchText}
+          handleChange={handleSearchChange}
+        />
       </div>
 
       <div className="mt-10">
@@ -69,16 +93,19 @@ const Home = () => {
           </div>
         ) : (
           <>
-            {searcthText && (
+            {searchText && (
               <h2 className="mb-3 text-xl font-medium text-smoke-gray">
                 Showing results for
-                <span className="text-not-that-black"> {searcthText}</span>
+                <span className="text-not-that-black"> {searchText}</span>
               </h2>
             )}
 
             <div className="grid grid-cols-1 gap-3 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-              {searcthText ? (
-                <RenderCards data={[]} title="No search results found" />
+              {searchText ? (
+                <RenderCards
+                  data={searchedResults}
+                  title="No search results found"
+                />
               ) : (
                 <RenderCards data={allPosts} title="No posts found" />
               )}

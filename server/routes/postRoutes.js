@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
     })
 
     res.status(201).json({ success: true, data: newPost })
-    console.log("Post created", newPost)
   } catch (error) {
     res.status(500).json({ success: false, message: error })
   }
