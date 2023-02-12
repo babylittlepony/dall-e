@@ -76,7 +76,7 @@ const CreatePost = () => {
   }
 
   return (
-    <section className="mx-auto max-w-7xl">
+    <section className="mx-auto max-w-7xl font-serif">
       <div className="text-[32px] font-bold text-not-that-black">
         <h1>Create</h1>
         <p className="mt-2 max-w-[500px] text-[14px] tracking-wide text-sky-blue">

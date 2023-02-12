@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
@@ -14,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ["Inter var", "sans-serif"],
+        serif: ["Source Serif Pro", ...defaultTheme.fontFamily.serif],
       },
       boxShadow: {
         card: "0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.2)",
