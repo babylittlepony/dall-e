@@ -76,10 +76,12 @@ const CreatePost = () => {
   }
 
   return (
-    <section className="mx-auto max-w-7xl font-serif">
-      <div className="text-[32px] font-bold text-not-that-black">
-        <h1>Create</h1>
-        <p className="mt-2 max-w-[500px] text-[14px] tracking-wide text-sky-blue">
+    <section className="mx-auto max-w-7xl">
+      <div className="my-10">
+        <h1 className="font-serif text-4xl text-not-that-black xs:text-6xl lg:text-8xl">
+          Create
+        </h1>
+        <p className="mt-2 max-w-[500px] text-[14px] tracking-wide text-sky-blue xs:text-lg lg:text-2xl">
           Create imaginative and visually stunning images through
           <span className="font-extrabold text-not-that-black"> DALL-E AI</span>
         </p>
