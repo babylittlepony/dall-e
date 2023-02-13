@@ -24,7 +24,7 @@ const CreatePost = () => {
 
       try {
         const res = await fetch(
-          "https://dall-e-sooty-five.vercel.app//api/v1/post",
+          "https://dall-e-sooty-five.vercel.app/api/v1/post",
           {
             method: "POST",
             headers: {
