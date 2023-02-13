@@ -24,7 +24,7 @@ const CreatePost = () => {
 
       try {
         const res = await fetch(
-          "https://dall-r8bfkynzh-babylittlepony.vercel.app/api/v1/post",
+          "https://dall-e-sooty-five.vercel.app//api/v1/post",
           {
             method: "POST",
             headers: {
@@ -57,13 +57,16 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true)
-        const res = await fetch("http://localhost:8080/api/v1/dalle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ prompt: form.prompt }),
-        })
+        const res = await fetch(
+          "https://dall-e-sooty-five.vercel.app/api/v1/dalle",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ prompt: form.prompt }),
+          }
+        )
 
         const data = await res.json()
 

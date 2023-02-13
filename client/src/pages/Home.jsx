@@ -27,7 +27,7 @@ const Home = () => {
 
     try {
       const res = await fetch(
-        "https://dall-r8bfkynzh-babylittlepony.vercel.app/api/v1/post",
+        "https://dall-e-sooty-five.vercel.app/api/v1/post",
         {
           method: "GET",
           headers: {
