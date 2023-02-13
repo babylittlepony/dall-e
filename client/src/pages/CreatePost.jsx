@@ -23,13 +23,16 @@ const CreatePost = () => {
       setLoading(true)
 
       try {
-        const res = await fetch("http://localhost:8080/api/v1/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...form }),
-        })
+        const res = await fetch(
+          "https://dall-r8bfkynzh-babylittlepony.vercel.app/api/v1/post",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...form }),
+          }
+        )
 
         await res.json()
         alert("Success")
